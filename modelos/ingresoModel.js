@@ -19,7 +19,7 @@ var metodos = {}
 
 // --> app.get("/", listarTodo());  --> ingreso = ingresoBD.getAll((err, result) => {}
 metodos.getAll = function (callback) {
-    consulta = "select * from ingreso";
+    consulta = "select CONCAT(paciente.apellido, ', ', paciente.nombre) AS ApeNomPaciente, CONCAT(medico.apellido, ', ', medico.nombre) AS ApeNomMedico, id_ingreso, fecha_ingreso, nro_habitacion, nro_cama, ingreso.observaciones, nro_hisotorial_paciente, matricula_medico from ingreso, paciente, medico WHERE nro_hisotorial_paciente=nro_hisotorial_clinico AND matricula_medico=matricula";
     connection.query(consulta, function (err, resultados, fields) {
         if (err) {
             callback(err);
